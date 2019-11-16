@@ -7,6 +7,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -21,8 +22,8 @@ public class Team extends BaseEntity {
     @Size(min = 2, max = 30)
     private String name;
 
-    @OneToMany(cascade = CascadeType.MERGE)
-    private List<Player> players;
+    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
+    private List<Player> players = new ArrayList<>();
 
     @Column(name = "logo_url")
     private String logoUrl;

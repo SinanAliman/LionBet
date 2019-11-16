@@ -10,6 +10,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -31,8 +32,8 @@ public class User extends BaseEntity {
     @NotNull
     private String password;
 
-    @OneToMany(cascade = CascadeType.MERGE)
-    private List<Prediction> predictions;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Prediction> predictions = new ArrayList<>();
 
     @Column
     @NotNull
