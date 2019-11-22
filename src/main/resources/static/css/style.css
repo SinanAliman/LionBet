@@ -1,0 +1,37 @@
+.logo {
+    width: 200px;
+    height: 100px;
+    backface-visibility: hidden;
+    
+
+}
+
+.body-backgr {
+background-image: url("/img/lion-bet-backgr.jpg");
+background-position: top;
+background-attachment: fixed;
+background-size: cover;
+
+/* background-repeat: no-repeat;
+background-size: 1400px 690px; */
+ 
+}
+/* header{
+    content: '';
+    background-color: rgba(0, 0, 0, 0.3);
+    width: 1366px;
+    height: 657px;
+    display: block;
+    
+} */
+
+.h1 {
+    color: chocolate;
+    scroll-padding-block-end: 400px;
+    width: 100px;
+    height: 200px;
+}
+
+input{
+    width: 25px;
+}
