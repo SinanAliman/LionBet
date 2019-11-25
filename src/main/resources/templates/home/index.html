@@ -3,28 +3,7 @@
       xmlns:th="http://www.thymeleaf.org">
 <th:block th:include="~{common/head}"/>
 <body class="body-backgr">
-    <header>
-        <nav class="navbar bg-dark navbar-expand-lg navbar-background bg-dark ">
-            <a class="nav-link text-success font-weight-bold active h2" href="/LionBet/index.html">LION BET</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                    aria-controls="navbarNav"  aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
-                <ul class="navbar-nav row">
-                    <li class="nav-item col-md-4">
-                        <a class="nav-link text-success font-weight-bold active h4" href="/LionBet/index.html">Home</a>
-                    </li>
-                    <li class="nav-item col-md-4">
-                        <a class="nav-link text-success font-weight-bold active h4" href="/LionBet/login.html">Login</a>
-                    </li>
-                    <li class="nav-item col-md-4">
-                        <a class="nav-link text-success font-weight-bold active h4" href="/LionBet/register.html">Register</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+    <th:block th:include="~{common/not-reg-header}"/>
     <main>
         <div class="container">
             <hr class="my-5"/>
@@ -33,73 +12,9 @@
             <p class="h3 text-white">The best game for predictions on</p>
             <p class="h3 text-white">football matches from top leagues of Europe!</p>
             <hr class="my-3"/>
-            <h3 class="text-white"><a class="text-success font-weight-bold" href="/LionBet/login.html"> Login </a>if you have an account or</h3>
-            <h3 class="text-white"><a class="text-success font-weight-bold" href="/LionBet/register.html"> Register </a>now and make your predictions.</h3>>
+            <h3 class="text-white"><a class="text-success font-weight-bold" href="/login"> Login </a>if you have an account or</h3>
+            <h3 class="text-white"><a class="text-success font-weight-bold" href="/register"> Register </a>now and make your predictions.</h3>>
         </div>
     </main>
-
-    <!-- <header>
-
-        <img class="logo" src="./images/lion2-logo.jpg" alt="LionBet-logo">
-        <h1 class="h1"> LION BET</h1>
-    </header> -->
-
-    <!-- <section>
-        <h2>SIGN IN</h2>
-    </section>
-    
-    <section>
-        <h3>REGISTER</h3>
-    
-        <label >
-            First Name: 
-            <input type="text">
-        </label>
-
-        <br></br>
-
-        <label >
-            Last Name: 
-            <input type="text">
-        </label>
-
-        <br></br>
-
-        <label >
-        E-mail: 
-            <input type="email">
-        </label>
-
-        <br></br>
-
-        <label >
-            Username: 
-            <input type="text">
-        </label>
-
-        <br></br>
-
-        <label >
-            Password: 
-            <input type="password">
-        </label>
-
-        <br></br>
-
-        <label >
-           Repeat Password: 
-            <input type="password">
-        </label>
-
-        <br></br>
-
-        <label >
-            <input type="submit" value="Sign in">
-        </label>
-
-    </section> -->
-    
-
-    
 </body>
 </html>
