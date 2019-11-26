@@ -6,9 +6,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import softuni.LionBet.service.models.auth.LoginUserServiceModel;
 import softuni.LionBet.service.models.auth.RegisterUserServiceModel;
 import softuni.LionBet.service.services.AuthService;
+import softuni.LionBet.web.models.LoginUserModel;
 import softuni.LionBet.web.models.RegisterUserModel;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class AuthController {
@@ -37,5 +41,16 @@ public class AuthController {
         RegisterUserServiceModel serviceModel = this.modelMapper.map(model, RegisterUserServiceModel.class);
         this.authService.register(serviceModel);
         return "redirect:/login";
+    }
+    @PostMapping("/login")
+    public String login(@ModelAttribute LoginUserModel model, HttpSession session){
+        LoginUserServiceModel serviceModel = this.modelMapper.map(model, LoginUserServiceModel.class);
+        try {
+            this.authService.login(serviceModel);
+            session.setAttribute("username", serviceModel.getUsername());
+            return "redirect:/";
+        } catch (Exception e) {
+            return "redirect:/register";
+        }
     }
 }

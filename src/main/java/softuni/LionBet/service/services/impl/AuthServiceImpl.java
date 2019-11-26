@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import softuni.LionBet.data.models.entities.User;
 import softuni.LionBet.data.repositories.UserRepository;
+import softuni.LionBet.service.models.auth.LoginUserServiceModel;
 import softuni.LionBet.service.models.auth.RegisterUserServiceModel;
 import softuni.LionBet.service.services.AuthService;
 import softuni.LionBet.service.services.AuthValidationService;
@@ -30,11 +31,20 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public void register(RegisterUserServiceModel model) {
         if (!authValidationService.isValidUser(model)){
-            return;
+            return; //TODO THROW EXCEPTION
         }
         User user = this.modelMapper.map(model, User.class);
         user.setPassword(this.passwordHashService.hashPassword(user.getPassword()));
         this.userRepository.saveAndFlush(user);
+
+    }
+
+    @Override
+    public void login(LoginUserServiceModel serviceModel) throws Exception {
+        String hashedPassword = this.passwordHashService.hashPassword(serviceModel.getPassword());
+        if (!this.userRepository.existsByUsernameAndPassword(serviceModel.getUsername(), hashedPassword)){
+            throw new Exception("Invalid data!");
+        }
 
     }
 }
