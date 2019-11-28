@@ -48,9 +48,9 @@ public class AuthController {
         try {
             this.authService.login(serviceModel);
             session.setAttribute("username", serviceModel.getUsername());
-            return "redirect:/";
+            return "redirect:/home";
         } catch (Exception e) {
-            return "redirect:/register";
+            return "redirect:/login";
         }
     }
 }
