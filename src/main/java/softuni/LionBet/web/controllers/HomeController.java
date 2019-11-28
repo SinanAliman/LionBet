@@ -9,8 +9,15 @@ public class HomeController {
     public String getIndex(){
         return "home/index.html";
     }
+
     @GetMapping("/home")
     public String getHome(){
         return "/home/home.html";
     }
+
+    @GetMapping("/moderate")
+    public String getModeratorHome(){
+        return "/home/moderator-home.html";
+    }
+
 }
