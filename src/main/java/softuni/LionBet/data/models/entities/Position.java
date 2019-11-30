@@ -1,5 +1,5 @@
 package softuni.LionBet.data.models.entities;
 
-public enum Positon {
+public enum Position {
     GK, DEF, MID, ATT
 }

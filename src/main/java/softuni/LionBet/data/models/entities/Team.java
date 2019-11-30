@@ -17,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Team extends BaseEntity {
 
-    @Column
+    @Column(unique = true)
     @NotNull
     @Size(min = 2, max = 30)
     private String name;
@@ -25,6 +25,6 @@ public class Team extends BaseEntity {
     @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
     private List<Player> players = new ArrayList<>();
 
-    @Column(name = "logo_url")
+    @Column(name = "logo_url", unique = true)
     private String logoUrl;
 }

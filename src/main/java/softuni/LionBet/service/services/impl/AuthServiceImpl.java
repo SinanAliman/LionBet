@@ -29,9 +29,9 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public void register(RegisterUserServiceModel model) {
+    public void register(RegisterUserServiceModel model) throws Exception {
         if (!authValidationService.isValidUser(model)){
-            return; //TODO THROW EXCEPTION
+            throw new Exception("Invalid data provided!"); //TODO THROW EXCEPTION
         }
         User user = this.modelMapper.map(model, User.class);
         user.setPassword(this.passwordHashService.hashPassword(user.getPassword()));

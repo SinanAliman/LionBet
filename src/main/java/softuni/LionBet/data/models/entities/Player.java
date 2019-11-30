@@ -1,7 +1,6 @@
 package softuni.LionBet.data.models.entities;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -24,9 +23,9 @@ public class Player extends BaseEntity{
     @Size(min = 2, max = 20)
     private String secondName;
 
-
     @ManyToOne
     @JoinColumn(name = "team_id", referencedColumnName = "id")
+    @NotNull
     private Team team;
 
     @Column(name = "coefficient")
@@ -36,7 +35,7 @@ public class Player extends BaseEntity{
 
     @Column
     @Enumerated(EnumType.STRING)
-    private Positon positon;
+    private Position position;
 
     public Player() {
         this.setCoefficientToScore(1);
