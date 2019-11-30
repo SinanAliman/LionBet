@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="~{common/head}"/>
+<body class="body-backgr">
+<th:block th:include="~{common/moderator-header}"/>
+<main class="p-5">
+    <h1 class="pos-add-team text-success font-weight-bold">Add Player</h1>
+    <hr class="hr-3"/>
+    <form class="mll-reg1 w-25" th:action="@{/addPlayer}" method="post">
+        <div class="form-group">
+            <div class="label-holder text-white d-flex justify-content-center">
+                <label for="first-name" class="h3 mb-2">First Name</label>
+            </div>
+            <input type="text" class="form-control h3" id="first-name" name="FirstName"/>
+
+            <div class="label-holder text-white d-flex justify-content-center">
+                <label for="second-name" class="h3 mb-2">Second Name</label>
+            </div>
+            <input type="text" class="form-control h3" id="second-name" name="SecondName"/>
+
+            <label for="select-player-team" class="label-holder text-white h3 d-flex justify-content-center">Team</label>
+            <select id="select-player-team" class="form-control h3" name="team">
+                <option selected="selected" disabled>Team</option>
+
+                <option th:each="name : ${teamsNames}"
+                        th:value="${name}" th:text="${name}"></option>
+
+            </select>
+
+            <div class="label-holder text-white d-flex justify-content-center">
+                <label for="coeff" class="h3 mb-2">Coefficient</label>
+            </div>
+            <input type="text" class="form-control h3" id="coeff" name="coefficientToScore"/>
+
+            <label for="select-player-position" class="label-holder text-white h3 d-flex justify-content-center">Position</label>
+            <select id="select-player-position" class="form-control h3" name="position">
+                <option selected="selected" disabled>Position</option>
+
+                <option th:each="position : ${T(softuni.LionBet.data.models.enums.Position).values()}"
+                        th:value="${position}" th:text="${position}"></option>
+
+            </select>
+
+        </div>
+        <div class="button-holder d-flex justify-content-center">
+            <button class="btn btn-success text-white font-weight-bold mb-3" type="submit">Add</button>
+        </div>
+    </form>
+</main>
+</body>
+</html>

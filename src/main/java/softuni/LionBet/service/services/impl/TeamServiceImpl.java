@@ -10,6 +10,8 @@ import softuni.LionBet.service.models.moderate.AddTeamServiceModel;
 import softuni.LionBet.service.services.TeamService;
 
 import javax.validation.ConstraintViolationException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class TeamServiceImpl implements TeamService {
@@ -29,5 +31,14 @@ public class TeamServiceImpl implements TeamService {
         }
         Team team = this.modelMapper.map(model, Team.class);
         this.teamRepository.saveAndFlush(team);
+    }
+
+    @Override
+    public List<String> getTeamsNames() {
+        List<String> teamsNames = new ArrayList<>();
+        for (Team team : this.teamRepository.findAll()) {
+            teamsNames.add(team.getName());
+        }
+        return teamsNames;
     }
 }

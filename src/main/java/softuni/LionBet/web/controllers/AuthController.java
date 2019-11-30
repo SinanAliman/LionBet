@@ -52,7 +52,7 @@ public class AuthController {
         try {
             this.authService.login(serviceModel);
             session.setAttribute("username", serviceModel.getUsername());
-            return "redirect:/moderate";
+            return "redirect:/moderator";
         } catch (Exception e) {
             return "redirect:/login";
         }

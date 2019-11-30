@@ -2,6 +2,7 @@ package softuni.LionBet.data.models.entities;
 
 import lombok.Getter;
 import lombok.Setter;
+import softuni.LionBet.data.models.enums.Position;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;

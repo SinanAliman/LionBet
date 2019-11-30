@@ -15,7 +15,7 @@ public class HomeController {
         return "/home/home.html";
     }
 
-    @GetMapping("/moderate")
+    @GetMapping("/moderator")
     public String getModeratorHome(){
         return "/home/moderator-home.html";
     }
