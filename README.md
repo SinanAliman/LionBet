@@ -35,7 +35,7 @@ Use ModelМapper or other mapping library.
 Additional Requirements
 Follow the best practices for OO design and high-quality code for the Web application:
 Use data encapsulation.
-Use exception handling properly.
+Use exception handling properly
 Use inheritance, abstraction and polymorphism properly.
 Follow the principles of strong cohesion and loose coupling.
 Correctly format and structure your code, name your identifiers and make the code readable.
