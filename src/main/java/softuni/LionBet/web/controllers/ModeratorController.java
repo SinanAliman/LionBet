@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+import softuni.LionBet.service.models.moderate.AddPlayerServiceModel;
 import softuni.LionBet.service.models.moderate.AddTeamServiceModel;
 import softuni.LionBet.service.services.PlayerService;
 import softuni.LionBet.service.services.TeamService;
@@ -39,9 +40,9 @@ public class ModeratorController {
 
         try {
             this.teamService.addTeam(serviceModel);
-            return "redirect:/moderator";
-        }catch (DataIntegrityViolationException ex){
             return "redirect:/addTeam";
+        }catch (DataIntegrityViolationException ex){
+            return "redirect:/moderator";
         }
     }
 
@@ -55,8 +56,16 @@ public class ModeratorController {
 
     @PostMapping("/addPlayer")
     public ModelAndView addPlayer(@ModelAttribute AddPlayerModel model){
+        try {
+            AddPlayerServiceModel serviceModel = this.modelMapper.map(model, AddPlayerServiceModel.class);
+            this.playerService.addPlayer(serviceModel);
 
-        return new ModelAndView("redirect:/moderator");
+            return new ModelAndView("redirect:/addPlayer");
+        }catch (Exception ex){
+            ex.getMessage();
+            return new ModelAndView(("redirect:/moderator"));
+        }
+
 
     }
 }

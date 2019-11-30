@@ -1,6 +1,7 @@
 package softuni.LionBet.data.models.entities;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import softuni.LionBet.data.models.enums.Position;
 
@@ -13,6 +14,7 @@ import javax.validation.constraints.Size;
 @Table(name = "players")
 @Getter
 @Setter
+@NoArgsConstructor
 public class Player extends BaseEntity{
 
     @Column(name = "first_name")
@@ -38,7 +40,5 @@ public class Player extends BaseEntity{
     @Enumerated(EnumType.STRING)
     private Position position;
 
-    public Player() {
-        this.setCoefficientToScore(1);
-    }
+
 }
