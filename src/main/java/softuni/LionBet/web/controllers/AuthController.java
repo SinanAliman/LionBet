@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import softuni.LionBet.service.models.auth.LoginUserServiceModel;
 import softuni.LionBet.service.models.auth.RegisterUserServiceModel;
 import softuni.LionBet.service.services.AuthService;
-import softuni.LionBet.web.models.LoginUserModel;
-import softuni.LionBet.web.models.RegisterUserModel;
+import softuni.LionBet.web.models.auth.LoginUserModel;
+import softuni.LionBet.web.models.auth.RegisterUserModel;
 
 import javax.servlet.http.HttpSession;
 

@@ -6,10 +6,9 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import softuni.LionBet.data.models.entities.Team;
 import softuni.LionBet.data.repositories.TeamRepository;
-import softuni.LionBet.service.models.moderate.AddTeamServiceModel;
+import softuni.LionBet.service.models.moderator.AddTeamServiceModel;
 import softuni.LionBet.service.services.TeamService;
 
-import javax.validation.ConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 

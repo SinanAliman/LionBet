@@ -1,4 +1,4 @@
-package softuni.LionBet.service.models.moderate;
+package softuni.LionBet.service.models.moderator;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

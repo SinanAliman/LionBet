@@ -7,7 +7,7 @@ import softuni.LionBet.data.models.entities.Player;
 import softuni.LionBet.data.models.entities.Team;
 import softuni.LionBet.data.repositories.PlayerRepository;
 import softuni.LionBet.data.repositories.TeamRepository;
-import softuni.LionBet.service.models.moderate.AddPlayerServiceModel;
+import softuni.LionBet.service.models.moderator.AddPlayerServiceModel;
 import softuni.LionBet.service.services.PlayerService;
 
 import java.util.List;

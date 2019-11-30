@@ -1,6 +1,6 @@
 package softuni.LionBet.service.services;
 
-import softuni.LionBet.service.models.moderate.AddTeamServiceModel;
+import softuni.LionBet.service.models.moderator.AddTeamServiceModel;
 
 import java.util.List;
 

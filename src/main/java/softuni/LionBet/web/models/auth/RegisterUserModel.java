@@ -1,4 +1,4 @@
-package softuni.LionBet.web.models;
+package softuni.LionBet.web.models.auth;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
