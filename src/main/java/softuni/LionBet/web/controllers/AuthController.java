@@ -47,12 +47,12 @@ public class AuthController {
         }
     }
     @PostMapping("/login")
-    public String login(@ModelAttribute LoginUserModel model, HttpSession session){
-        LoginUserServiceModel serviceModel = this.modelMapper.map(model, LoginUserServiceModel.class);
+    public String login(@ModelAttribute RegisterUserModel model, HttpSession session){
+        RegisterUserServiceModel serviceModel = this.modelMapper.map(model, RegisterUserServiceModel.class);
         try {
-            this.authService.login(serviceModel);
-            session.setAttribute("username", serviceModel.getUsername());
-            return "redirect:/moderator";
+            LoginUserServiceModel userServiceModel =  this.authService.login(serviceModel);
+            session.setAttribute("user", userServiceModel);
+            return "redirect:/home";
         } catch (Exception e) {
             return "redirect:/login";
         }

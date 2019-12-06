@@ -11,6 +11,8 @@ import softuni.LionBet.service.services.AuthService;
 import softuni.LionBet.service.services.AuthValidationService;
 import softuni.LionBet.service.services.PasswordHashService;
 
+import java.util.Optional;
+
 @Service
 public class AuthServiceImpl implements AuthService {
 
@@ -40,11 +42,19 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public void login(LoginUserServiceModel serviceModel) throws Exception {
+    public LoginUserServiceModel login(RegisterUserServiceModel serviceModel) throws Exception {
         String hashedPassword = this.passwordHashService.hashPassword(serviceModel.getPassword());
-        if (!this.userRepository.existsByUsernameAndPassword(serviceModel.getUsername(), hashedPassword)){
+
+        Optional<User> userOptional = this.userRepository.findByUsernameAndPassword(serviceModel.getUsername(),
+                hashedPassword);
+
+        if (userOptional.isEmpty()){
             throw new Exception("Invalid data!");
         }
+
+        User user = userOptional.get();
+
+        return new LoginUserServiceModel(user.getUsername(), user.getPredictions(), user.getPoints());
 
     }
 }

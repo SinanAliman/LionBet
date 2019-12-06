@@ -6,5 +6,5 @@ import softuni.LionBet.service.models.auth.RegisterUserServiceModel;
 public interface AuthService {
     void register(RegisterUserServiceModel model) throws Exception;
 
-    void login(LoginUserServiceModel serviceModel) throws Exception;
+    LoginUserServiceModel login(RegisterUserServiceModel serviceModel) throws Exception;
 }
