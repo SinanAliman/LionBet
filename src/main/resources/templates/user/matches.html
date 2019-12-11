@@ -4,11 +4,9 @@
 <th:block th:include="~{common/head}"/>
 <body class="body-backgr">
 <th:block th:include="~{common/logged-in-admin-header}"/>
-<main>
-    <main class="p-5">
+    <main class="p-5 ">
         <hr class="hr-5"/>
-
-        <div class="p-md-5 w-50 d-inline-flex">
+        <div class="p-md-5 w-50">
             <th:block th:each="match : ${matches}">
                 <div class="button-holder justify-content-center">
                     <a class="btn btn-success text-white mb-3 col-lg-12" href="/LionBet/login.html"
@@ -19,6 +17,5 @@
 
         </div>
     </main>
-</main>
 </body>
 </html>
