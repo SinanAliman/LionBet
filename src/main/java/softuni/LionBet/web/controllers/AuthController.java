@@ -6,10 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import softuni.LionBet.service.models.auth.LoginUserServiceModel;
 import softuni.LionBet.service.models.auth.RegisterUserServiceModel;
-import softuni.LionBet.service.services.AuthService;
-import softuni.LionBet.web.models.auth.LoginUserModel;
+import softuni.LionBet.service.services.UserService;
 import softuni.LionBet.web.models.auth.RegisterUserModel;
 
 import javax.servlet.http.HttpSession;
@@ -17,12 +15,12 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class AuthController {
 
-    private final AuthService authService;
+    private final UserService authService;
     private final ModelMapper modelMapper;
 
     @Autowired
-    public AuthController(AuthService authService, ModelMapper modelMapper) {
-        this.authService = authService;
+    public AuthController(UserService userService, ModelMapper modelMapper) {
+        this.authService = userService;
         this.modelMapper = modelMapper;
     }
 
@@ -44,17 +42,6 @@ public class AuthController {
             return "redirect:/login";
         } catch (Exception e) {
             return "redirect:/register";
-        }
-    }
-    @PostMapping("/login")
-    public String login(@ModelAttribute RegisterUserModel model, HttpSession session){
-        RegisterUserServiceModel serviceModel = this.modelMapper.map(model, RegisterUserServiceModel.class);
-        try {
-            LoginUserServiceModel userServiceModel =  this.authService.login(serviceModel);
-            session.setAttribute("user", userServiceModel);
-            return "redirect:/home";
-        } catch (Exception e) {
-            return "redirect:/login";
         }
     }
 }

@@ -7,11 +7,11 @@ import softuni.LionBet.service.models.auth.RegisterUserServiceModel;
 import softuni.LionBet.service.services.AuthValidationService;
 
 @Service
-public class AuthValidationServiceImpl implements AuthValidationService {
+public class UserValidationServiceImpl implements AuthValidationService {
     private final UserRepository userRepository;
 
     @Autowired
-    public AuthValidationServiceImpl(UserRepository userRepository) {
+    public UserValidationServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
