@@ -31,6 +31,7 @@ public class User extends BaseEntity implements UserDetails {
 
     @Column
     @NotNull
+    @Size(min = 3)
     private String password;
 
     @OneToMany(cascade = CascadeType.ALL)
@@ -41,7 +42,7 @@ public class User extends BaseEntity implements UserDetails {
     @Min(0)
     private int points;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",
             joinColumns = @JoinColumn(

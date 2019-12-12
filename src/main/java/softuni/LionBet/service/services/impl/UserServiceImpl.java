@@ -57,10 +57,12 @@ public class UserServiceImpl implements UserService {
     }
 
     private Set<Role> getRolesForRegistration() {
-        Set<Role> roles = new HashSet<Role>();
+        Set<Role> roles = new HashSet<>();
 
         if(this.userRepository.count() == 0) {
             roles.add(this.roleRepository.findByName("ADMIN"));
+            roles.add(this.roleRepository.findByName("MODERATOR"));
+            roles.add(this.roleRepository.findByName("USER"));
         } else {
             roles.add(this.roleRepository.findByName("USER"));
         }

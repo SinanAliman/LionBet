@@ -3,6 +3,7 @@ package softuni.LionBet.web.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -36,6 +37,7 @@ public class ModeratorController {
     }
 
     @GetMapping("/addTeam")
+    @PreAuthorize("isFullyAuthenticated()")
     public String getAddTeamForm(){
         return "moderator/add-team.html";
     }
@@ -53,6 +55,7 @@ public class ModeratorController {
     }
 
     @GetMapping("/addPlayer")
+    @PreAuthorize("isFullyAuthenticated()")
     public ModelAndView getAddPlayerForm(@ModelAttribute ModelAndView modelAndView){
         List<String> teamsNames = this.teamService.getTeamsNames();
         modelAndView.addObject("teamsNames",teamsNames);
@@ -74,6 +77,7 @@ public class ModeratorController {
     }
 
     @GetMapping("/addMatch")
+    @PreAuthorize("isFullyAuthenticated()")
     public ModelAndView getAddMatchForm(@ModelAttribute ModelAndView modelAndView){
         List<String> teamsNames = this.teamService.getTeamsNames();
         modelAndView.addObject("teamsNames",teamsNames);
@@ -84,7 +88,7 @@ public class ModeratorController {
     @PostMapping("/addMatch")
     public ModelAndView addMatch(@ModelAttribute AddMatchModel model){
         if (model.getHomeTeamName().equals(model.getAwayTeamName())){
-            return new ModelAndView("redirect:/addTeam");
+            return new ModelAndView("redirect:/moderator");
             //todo throw appropriate exception!!!
         }
 

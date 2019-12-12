@@ -19,8 +19,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .csrfTokenRepository(csrfTokenRepository())
                 .and()
                 .authorizeRequests()
-                .antMatchers("/", "/login", "/register").anonymous()
-                .antMatchers("/admin/**").hasAuthority("ADMIN")
+                .antMatchers("/", "/register", "/login").anonymous()
+                .antMatchers("/moderator", "/addTeam", "/addPlayer", "/addMatch").hasAuthority("ADMIN")
+                .antMatchers("/css/**", "/img/**", "/scripts/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -29,7 +30,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .passwordParameter("password")
                 .defaultSuccessUrl("/home")
                 .and()
-                .logout();
+                .logout().logoutSuccessUrl("/login?logout").permitAll()
+                .and().exceptionHandling().accessDeniedPage("/unauthorized");
     }
 
     private CsrfTokenRepository csrfTokenRepository() {

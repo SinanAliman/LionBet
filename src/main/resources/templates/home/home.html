@@ -7,8 +7,13 @@
 <main>
     <div class="container pos-add-team">
         <hr class="mt-5"/>
-        <h1 class="lite-green font-weight-bold">Welcome, [[${session.user.username}]]!</h1>
-        <h1 class="lite-green font-weight-bold">Your points: </h1>
+        <h1 class="lite-green font-weight-bold">Welcome,
+            <span th:text="${#authentication.getName()}"!></span>!</h1>
+        <span>
+        </span>
+        <h1 class="lite-green font-weight-bold">Your points:
+            <span th:text="${#authentication.getPrincipal().getPoints()}"!></span>
+        </h1>
 
     </div>
 </main>
