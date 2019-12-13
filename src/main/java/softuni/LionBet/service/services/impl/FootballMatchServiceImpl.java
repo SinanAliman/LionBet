@@ -1,16 +1,19 @@
 package softuni.LionBet.service.services.impl;
 
+import javassist.NotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import softuni.LionBet.data.models.entities.FootballMatch;
 import softuni.LionBet.data.models.entities.Team;
 import softuni.LionBet.data.repositories.FootballMatchRepository;
 import softuni.LionBet.data.repositories.TeamRepository;
-import softuni.LionBet.service.models.MatchesListServiceModel;
+import softuni.LionBet.service.models.matches.MatchByIdServiceModel;
+import softuni.LionBet.service.models.matches.MatchesListServiceModel;
 import softuni.LionBet.service.models.moderator.AddMatchServiceModel;
 import softuni.LionBet.service.services.FootballMatchService;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -48,4 +51,19 @@ public class FootballMatchServiceImpl implements FootballMatchService {
         return this.footballMatchRepository.findAll().stream().map(m -> this.modelMapper.map(m, MatchesListServiceModel.class))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public MatchByIdServiceModel getMatchById(String id) throws NotFoundException {
+        Optional<FootballMatch> optional = this.footballMatchRepository.findById(id);
+
+        if (optional.isEmpty()){
+            throw new NotFoundException("Match not found!");
+        }
+
+        FootballMatch footballMatch = optional.get();
+
+        return this.modelMapper.map(footballMatch, MatchByIdServiceModel.class);
+    }
+
+
 }

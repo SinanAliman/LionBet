@@ -6,20 +6,21 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;;
 import softuni.LionBet.service.services.FootballMatchService;
-import softuni.LionBet.web.models.MatchesListViewModel;
+import softuni.LionBet.web.models.matches.MatchesListViewModel;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
-public class UserController {
+public class MatchController {
     private final FootballMatchService matchService;
     private final ModelMapper modelMapper;
 
     @Autowired
-    public UserController(FootballMatchService matchService, ModelMapper modelMapper) {
+    public MatchController(FootballMatchService matchService, ModelMapper modelMapper) {
         this.matchService = matchService;
         this.modelMapper = modelMapper;
     }
@@ -32,7 +33,7 @@ public class UserController {
 
 
         modelAndView.addObject("matches", footballMatches);
-        modelAndView.setViewName("user/matches");
+        modelAndView.setViewName("matches/matches");
         return modelAndView;
 
     }

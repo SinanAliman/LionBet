@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="~{common/head}"/>
+<body class="body-backgr">
+<th:block th:include="~{common/logged-in-admin-header}"/>
+<main class="p-5">
+    <h1 class="mll-reg3 text-success font-weight-bold ">Liverpool FC - Chelsea FC</h1>
+    <hr class="hr-3"/>
+    <form class="mll-reg1 w-25">
+        <div class="form-group">
+            <div class="label-holder text-white d-flex justify-content-center">
+                <label for="home-team-goals" class="h3 mb-2">Home Team Goals</label>
+            </div>
+            <input type="number" min="0" max="15" class="form-control h3" id="home-team-goals" name="HomeTeamGoals"/>
+
+            <div class="label-holder text-white d-flex justify-content-center">
+                <label for="away-team-goals" class="h3 mb-2">Away Team Goals</label>
+            </div>
+            <input type="number" min="0" max="15" class="form-control h3" id="away-team-goals" name="AwayTeamGoals"/>
+
+        </div>
+        <div class="button-holder d-flex justify-content-center">
+            <button class="btn btn-success text-white font-weight-bold mb-3" type="submit">Bet</button>
+        </div>
+    </form>
+</main>
+</body>
+</html>

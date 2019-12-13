@@ -9,19 +9,16 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class HomeController {
     @GetMapping("/")
-    @PreAuthorize("isAnonymous()")
     public String getIndex(HttpSession session){
         return "home/index.html";
     }
 
     @GetMapping("/home")
-    @PreAuthorize("isAuthenticated()")
     public String getHome(){
         return "/home/home.html";
     }
 
     @GetMapping("/moderator")
-    @PreAuthorize("isFullyAuthenticated()")
     public String getModeratorHome(){
         return "/home/moderator-home.html";
     }
