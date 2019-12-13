@@ -3,6 +3,7 @@ package softuni.LionBet.web.controllers;
 import javassist.NotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,12 +26,13 @@ public class PredictionController {
     }
 
     @GetMapping("/bet/{id}")
+    @PreAuthorize("isAuthenticated()")
     public ModelAndView getBettingForm(@PathVariable String id, ModelAndView modelAndView) throws NotFoundException {
-        MatchByIdViewModel match = this.modelMapper.map(this.footballMatchService
+        MatchByIdViewModel matchModel = this.modelMapper.map(this.footballMatchService
                 .getMatchById(id), MatchByIdViewModel.class);
 
-        modelAndView.addObject("match", match);
-        modelAndView.setViewName("/bet/make-bet");
+        modelAndView.addObject("match", matchModel);
+        modelAndView.setViewName("bet/make-bet");
 
         return modelAndView;
     }

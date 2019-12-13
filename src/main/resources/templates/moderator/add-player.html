@@ -17,7 +17,7 @@
             <div class="label-holder text-white d-flex justify-content-center">
                 <label for="second-name" class="h3 mb-2">Second Name</label>
             </div>
-            <input type="text" class="form-control h3" id="second-name" name="SecondName"/>
+            <input type="text" minlength="3" maxlength="30" class="form-control h3" id="second-name" name="SecondName"/>
 
             <label for="select-player-team" class="label-holder text-white h3 d-flex justify-content-center">Team</label>
             <select id="select-player-team" class="form-control h3" name="teamName">
@@ -31,7 +31,7 @@
             <div class="label-holder text-white d-flex justify-content-center">
                 <label for="coeff" class="h3 mb-2">Coefficient</label>
             </div>
-            <input type="text" class="form-control h3" id="coeff" name="coefficientToScore"/>
+            <input type="text" min="1" class="form-control h3" id="coeff" name="coefficientToScore"/>
 
             <label for="select-player-position" class="label-holder text-white h3 d-flex justify-content-center">Position</label>
             <select id="select-player-position" class="form-control h3" name="position">
