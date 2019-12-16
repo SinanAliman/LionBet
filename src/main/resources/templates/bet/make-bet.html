@@ -13,14 +13,14 @@
                     th:text="${match.homeTeam.name} + ' goals'">
                 </label>
             </div>
-            <input type="number" min="0" max="15" class="form-control h3 mb-3" id="home-team-goals" name="HomeTeamGoals"/>
+            <input type="number" min="0" max="15" class="form-control h3 mb-3" id="home-team-goals" name="homeTeamGoals"/>
 
             <div class="label-holder text-white d-flex justify-content-center">
                 <label for="away-team-goals" class="h3 mb-3"
                        th:text="${match.awayTeam.name} + ' goals'">
                 </label>
             </div>
-            <input type="number" min="0" max="15" class="form-control h3" id="away-team-goals" name="AwayTeamGoals"/>
+            <input type="number" min="0" max="15" class="form-control h3" id="away-team-goals" name="awayTeamGoals"/>
 
         </div>
         <div class="button-holder d-flex justify-content-center">

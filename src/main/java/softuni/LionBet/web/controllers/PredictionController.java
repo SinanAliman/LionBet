@@ -6,10 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import softuni.LionBet.service.services.FootballMatchService;
 import softuni.LionBet.service.services.PredictionService;
+import softuni.LionBet.web.models.predictions.MakePredictionModel;
 import softuni.LionBet.web.models.matches.MatchByIdViewModel;
 
 @Controller
@@ -35,5 +38,24 @@ public class PredictionController {
         modelAndView.setViewName("bet/make-bet");
 
         return modelAndView;
+    }
+
+    @PostMapping("/bet/{id}")
+    @PreAuthorize("isAuthenticated()")
+    public ModelAndView makeBet(@PathVariable String id, @ModelAttribute MakePredictionModel makePredictionModel) throws NotFoundException {
+        MatchByIdViewModel matchModel = this.modelMapper.map(this.footballMatchService
+                .getMatchById(id), MatchByIdViewModel.class);
+
+        makePredictionModel.setMatchModel(matchModel);
+
+        try {
+
+            return new ModelAndView("redirect:/matches");
+        } catch (Exception ex) {
+
+            return new ModelAndView("redirect:/home");
+        }
+
+
     }
 }
