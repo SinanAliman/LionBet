@@ -1,4 +1,4 @@
-<header>
+<header xmlns:th="http://www.w3.org/1999/xhtml">
     <nav class="navbar bg-dark navbar-expand-lg navbar-background bg-dark">
         <a class="nav-link text-success font-weight-bold active h2" href="/home">LION BET</a>
         <button class="navbar-toggler" type="button" data-target="#navbarNav"
@@ -28,7 +28,11 @@
                         </a>
                         <div class="dropdown-menu bg-dark" aria-labelledby="dropdown">
                             <a class="dropdown-item text-success bg-transparent font-weight-bold active h4" href="@{/careers/create}}">Bets</a>
-                            <a class="dropdown-item text-success bg-transparent font-weight-bold active h4" href="/careers/create">Logout</a>
+                            <div>
+                                <form th:action="@{/logout}" th:method="post">
+                                    <button class="btn dropdown-item text-success bg-transparent font-weight-bold active h4">Logout</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </li>

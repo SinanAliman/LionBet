@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+import softuni.LionBet.data.models.entities.FinalScore;
+import softuni.LionBet.data.models.entities.Prediction;
+import softuni.LionBet.service.models.predictions.MakePredictionServiceModel;
 import softuni.LionBet.service.services.FootballMatchService;
 import softuni.LionBet.service.services.PredictionService;
 import softuni.LionBet.web.models.predictions.MakePredictionModel;
@@ -42,20 +45,29 @@ public class PredictionController {
 
     @PostMapping("/bet/{id}")
     @PreAuthorize("isAuthenticated()")
-    public ModelAndView makeBet(@PathVariable String id, @ModelAttribute MakePredictionModel makePredictionModel) throws NotFoundException {
-        MatchByIdViewModel matchModel = this.modelMapper.map(this.footballMatchService
-                .getMatchById(id), MatchByIdViewModel.class);
-
-        makePredictionModel.setMatchModel(matchModel);
+    public ModelAndView makeBet(@PathVariable String id,
+                                @ModelAttribute MakePredictionModel makePredictionModel){
 
         try {
+            MatchByIdViewModel matchModel = this.modelMapper.map(this.footballMatchService
+                    .getMatchById(id), MatchByIdViewModel.class);
 
+            makePredictionModel.setMatchModel(matchModel);
+
+            MakePredictionServiceModel serviceModel = this.modelMapper.map(makePredictionModel, MakePredictionServiceModel.class);
+
+            FinalScore prediction = new FinalScore();
+            prediction.setHostGoals(makePredictionModel.getHomeTeamGoals());
+            prediction.setGuestGoals(makePredictionModel.getAwayTeamGoals());
+
+            serviceModel.setPrediction(prediction);
+
+            this.predictionService.saveBet(serviceModel);
             return new ModelAndView("redirect:/matches");
+
         } catch (Exception ex) {
-
             return new ModelAndView("redirect:/home");
+
         }
-
-
     }
 }

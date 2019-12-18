@@ -1,4 +1,4 @@
-<header>
+<header xmlns:th="http://www.w3.org/1999/xhtml">
     <nav class="navbar bg-dark navbar-expand-lg navbar-background bg-dark ">
         <a class="nav-link text-success font-weight-bold active h2" href="/home">LION BET</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -25,7 +25,11 @@
                         </a>
                         <div class="dropdown-menu bg-dark" aria-labelledby="dropdown">
                             <a class="dropdown-item text-success bg-transparent font-weight-bold active h4" href="@{/careers/create}}">Bets</a>
-                            <a class="dropdown-item text-success bg-transparent font-weight-bold active h4" href="/careers/create">Logout</a>
+                            <div class="buttons px-2 m-2">
+                                <form th:action="@{/logout}" th:method="post">
+                                    <button class="btn btn-outline-info m-2 my-sm-0" type="submit">Logout</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </li>
