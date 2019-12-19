@@ -57,6 +57,17 @@ public class User extends BaseEntity implements UserDetails {
         this.predictions = new ArrayList<>();
     }
 
+    public User(String username, String email,
+                String password, List<Prediction> predictions,
+                int points, Set<Role> roles) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.predictions = predictions;
+        this.points = points;
+        this.roles = roles;
+    }
+
     @Override
     @Transient
     public Collection<Role> getAuthorities() {

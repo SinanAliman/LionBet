@@ -11,12 +11,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import softuni.LionBet.data.models.entities.FinalScore;
-import softuni.LionBet.data.models.entities.Prediction;
 import softuni.LionBet.service.models.predictions.MakePredictionServiceModel;
 import softuni.LionBet.service.services.FootballMatchService;
 import softuni.LionBet.service.services.PredictionService;
 import softuni.LionBet.web.models.predictions.MakePredictionModel;
 import softuni.LionBet.web.models.matches.MatchByIdViewModel;
+import softuni.LionBet.web.models.predictions.PredictionViewModel;
+
+import java.security.Principal;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class PredictionController {
@@ -46,7 +50,8 @@ public class PredictionController {
     @PostMapping("/bet/{id}")
     @PreAuthorize("isAuthenticated()")
     public ModelAndView makeBet(@PathVariable String id,
-                                @ModelAttribute MakePredictionModel makePredictionModel){
+                                @ModelAttribute MakePredictionModel makePredictionModel,
+                                Principal principal){
 
         try {
             MatchByIdViewModel matchModel = this.modelMapper.map(this.footballMatchService
@@ -54,7 +59,8 @@ public class PredictionController {
 
             makePredictionModel.setMatchModel(matchModel);
 
-            MakePredictionServiceModel serviceModel = this.modelMapper.map(makePredictionModel, MakePredictionServiceModel.class);
+            MakePredictionServiceModel serviceModel = this.modelMapper.map(makePredictionModel,
+                    MakePredictionServiceModel.class);
 
             FinalScore prediction = new FinalScore();
             prediction.setHostGoals(makePredictionModel.getHomeTeamGoals());
@@ -62,7 +68,9 @@ public class PredictionController {
 
             serviceModel.setPrediction(prediction);
 
-            this.predictionService.saveBet(serviceModel);
+            String username = principal.getName();
+
+            this.predictionService.saveBet(id ,username ,serviceModel);
             return new ModelAndView("redirect:/matches");
 
         } catch (Exception ex) {
@@ -70,4 +78,20 @@ public class PredictionController {
 
         }
     }
+
+    @GetMapping("/bets")
+    public ModelAndView getBets(@ModelAttribute ModelAndView modelAndView, Principal principal) throws NotFoundException {
+
+        String username = principal.getName();
+
+        List<PredictionViewModel> predictions = this.predictionService.getUsersBets(username).stream()
+                .map(p -> this.modelMapper.map(p, PredictionViewModel.class)).collect(Collectors.toList());
+
+        modelAndView.addObject("bets", predictions);
+        modelAndView.setViewName("bet/my-bets");
+
+        return modelAndView;
+
+    }
+
 }

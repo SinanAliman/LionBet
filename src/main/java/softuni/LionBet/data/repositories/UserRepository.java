@@ -16,4 +16,6 @@ public interface UserRepository extends JpaRepository<User, String> {
     Optional<User> findUserByUsername(String username);
 
     List<User> findAllByPointsIsNotNullOrderByPointsDesc();
+
+    Optional<User> findByUsername(String name);
 }
