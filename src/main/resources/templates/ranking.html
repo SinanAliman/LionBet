@@ -4,18 +4,18 @@
 <th:block th:include="~{common/head}"/>
 <body class="body-backgr">
 <th:block th:include="~{common/logged-in-admin-header}"/>
-<main class="p-5 ">
+<main class="p-6 ">
     <hr class="hr-5"/>
-    <div class="p-md-5 w-50">
-<!--        <th:block th:each="match : ${matches}">-->
-<!--            <div class="button-holder justify-content-center">-->
-<!--                <form th:action="@{'/bet/' + ${match.id}}" th:method="get">-->
-<!--                    <button class="btn btn-success text-white mb-3 col-lg-12"-->
-<!--                            th:text="|${match.homeTeam.name}  -  ${match.awayTeam.name}|">-->
-<!--                    </button>-->
-<!--                </form>-->
-<!--            </div>-->
-<!--        </th:block>-->
+    <div class="pb-md-5 w-75">
+       <th:block th:each="user : ${users}">
+            <div class="button-holder justify-content-center">
+                <ol class="list-group">
+                    <li class="h2 li-green text-white text-lg-left font-weight-light col-lg-5"
+                            th:text="|${userStat.index + 1}. ${user.username}  -  ${user.points}pt|">
+                    </li>
+                </ol>
+            </div>
+       </th:block>
 
     </div>
 </main>

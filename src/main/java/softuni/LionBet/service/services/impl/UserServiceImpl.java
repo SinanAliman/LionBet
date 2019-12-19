@@ -10,12 +10,15 @@ import softuni.LionBet.data.models.entities.Role;
 import softuni.LionBet.data.models.entities.User;
 import softuni.LionBet.data.repositories.RoleRepository;
 import softuni.LionBet.data.repositories.UserRepository;
+import softuni.LionBet.service.models.UserRankingServiceModel;
 import softuni.LionBet.service.models.auth.RegisterUserServiceModel;
 import softuni.LionBet.service.services.UserService;
 import softuni.LionBet.service.services.AuthValidationService;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -49,10 +52,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<UserRankingServiceModel> getAllUsers() {
+        return this.userRepository.findAllByPointsIsNotNullOrderByPointsDesc().stream()
+                .map(user -> this.modelMapper.map(user, UserRankingServiceModel.class)).collect(Collectors.toList());
+
+    }
+
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserDetails result = this.userRepository.findUserByUsername(username)
+        return this.userRepository.findUserByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("Username not found."));
-        return result;
 
     }
 
