@@ -74,7 +74,7 @@ public class PredictionController {
             return new ModelAndView("redirect:/matches");
 
         } catch (Exception ex) {
-            return new ModelAndView("redirect:/home");
+            return new ModelAndView("redirect:/error");
 
         }
     }

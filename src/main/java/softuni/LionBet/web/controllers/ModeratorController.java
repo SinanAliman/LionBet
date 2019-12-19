@@ -89,7 +89,6 @@ public class ModeratorController {
     public ModelAndView addMatch(@ModelAttribute AddMatchModel model){
         if (model.getHomeTeamName().equals(model.getAwayTeamName())){
             return new ModelAndView("redirect:/moderator");
-            //todo throw appropriate exception!!!
         }
 
         try {
